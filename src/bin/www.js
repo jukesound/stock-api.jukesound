@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 
-const app = require('../app');
-const debug = require('debug')('stock-api.jukesound:server');
-const http = require('http');
+import app from '../../app';
+import debugLib from 'debug';
+import http from 'http';
+
+const debug = debugLib('your-project-name:server');
 
 /**
  * Get port from environment and store in Express.

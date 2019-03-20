@@ -1,12 +1,14 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-
 /*———————————————————————————————————*\
-    $ Routes
+    $ Imports
 \*———————————————————————————————————*/
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/item');
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+
+// Routes
+import indexRouter from './src/routes/index';
+import itemsRouter from './src/routes/items';
+
 
 const app = express();
 
@@ -19,6 +21,6 @@ app.use(cookieParser());
     $ Routes
 \*———————————————————————————————————*/
 app.use('/', indexRouter);
-app.use('/items', usersRouter);
+app.use('/items', itemsRouter);
 
-module.exports = app;
+export default app;
