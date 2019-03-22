@@ -1,0 +1,5 @@
+import path form path;
+
+module.exports = {
+  'config': path.resolve('config', 'config.js')
+}
