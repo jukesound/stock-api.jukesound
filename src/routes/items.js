@@ -1,5 +1,7 @@
 import express from 'express';
 const router = express.Router();
+// import sequelize from '../../database/index.js'
+import Item from '../models/Item.js'
 
 const items = [
   {
@@ -44,7 +46,9 @@ const items = [
     $ GET ITEMS
 \*———————————————————————————————————*/
 router.get('/', function(req, res) {
-  res.send(items);
+  Item.findAll()
+    .then(body => res.send(body))
+    .catch(err => console.log(err));
 });
 
 /*———————————————————————————————————*\
