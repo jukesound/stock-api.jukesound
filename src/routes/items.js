@@ -42,21 +42,30 @@ const items = [
   },
 ];
 
-/*———————————————————————————————————*\
-    $ GET ITEMS
-\*———————————————————————————————————*/
+
+/**
+ * GET LIST OF ITEMS
+ */
 router.get('/', function(req, res) {
   Item.findAll()
     .then(body => res.send(body))
     .catch(err => console.log(err));
 });
 
-/*———————————————————————————————————*\
-    $ POST ITEM
-\*———————————————————————————————————*/
+/**
+ * GET ITEM
+ */
+router.get('/:id', function(req, res) {
+  Item.findByPk(req.params.id)
+    .then(body => res.send(body))
+    .catch(err => console.log(err));
+});
+
+/**
+ * CREATE NEW ITEM
+ */
 router.post('/', function(req, res) {
   const newItem = {
-    id: 3,
     ...req.body
   };
   console.log(items);
@@ -65,9 +74,9 @@ router.post('/', function(req, res) {
   res.send(items);
 });
 
-/*———————————————————————————————————*\
-    $ PUT ITEM
-\*———————————————————————————————————*/
+/**
+ * MODIFY ITEM
+ */
 router.put('/:id', function(req, res) {
   let modifiedItem = items.find(item => parseInt(item.id) === parseInt(req.params.id));
 
@@ -84,9 +93,9 @@ router.put('/:id', function(req, res) {
   res.send(modifiedItem);
 });
 
-/*———————————————————————————————————*\
-    $ DELETE ITEM
-\*———————————————————————————————————*/
+/**
+ * DELETE ITEM
+ */
 router.delete('/:id', function(req, res) {
   const error = items.findIndex(item => parseInt(item.id) === parseInt(req.params.id));
 
