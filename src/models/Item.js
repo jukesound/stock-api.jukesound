@@ -39,6 +39,9 @@ Item.init({
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  price: {
+    type: Sequelize.FLOAT,
+  },
   url: {
     type: Sequelize.TEXT,
   },
