@@ -31,22 +31,13 @@ router.post('/', function(req, res) {
 });
 
 /**
- * MODIFY ITEM
+ * UPDATE ITEM
  */
 router.put('/:id', function(req, res) {
-  let modifiedItem = items.find(item => parseInt(item.id) === parseInt(req.params.id));
-
-  if (!modifiedItem) {
-    res.status(400).send({ error: 'Something failed!' });
-    return;
-  }
-
-  modifiedItem = {
-    ...modifiedItem,
-    ...req.body
-  };
-
-  res.send(modifiedItem);
+  Item.update(req.body, {
+    where: { id: req.params.id }
+  }).then(body => res.send(body))
+    .catch(err => console.log(err));
 });
 
 /**
