@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
-// import sequelize from '../../database/index.js'
-import Item from '../models/Item.js'
+// import sequelize from 'database'
+import Item from 'models/Item'
 
 const items = [
   {

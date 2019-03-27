@@ -1,7 +1,9 @@
+import { config } from "dotenv"; config();
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import sequelize from './database/'
+
+import sequelize from 'database'
 
 const app = express();
 
@@ -17,8 +19,8 @@ sequelize.authenticate()
 // import logger from 'morgan';
 //
 // Routes
-import indexRouter from './src/routes/index';
-import itemsRouter from './src/routes/items';
+import indexRouter from 'routes/index';
+import itemsRouter from 'routes/items';
 //
 // // Database
 // import db from "./database/index.js";

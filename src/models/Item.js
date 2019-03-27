@@ -1,8 +1,8 @@
 import { Model, Sequelize } from "sequelize";
-import sequelize from "../../database";
-import config from "../../config/index.js"
+import sequelize from "database";
+import config from "config"
 // Models
-// const Category = sequelize.import(__dirname + '/Category.js');
+// import Category from 'models/Category'
 
 class Item extends Model {
   // get fullName() {
