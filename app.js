@@ -6,8 +6,7 @@ import logger from 'morgan';
 import sequelize from 'database'
 
 // Routes
-import indexRouter from 'routes/index';
-import itemsRouter from 'routes/items';
+import routes from 'routes';
 
 const app = express();
 
@@ -29,7 +28,7 @@ app.use(cookieParser());
 /**
  * Routes
  */
-app.use('/', indexRouter);
-app.use('/items', itemsRouter);
+// app.use('/', routes.home);
+app.use('/items', routes.items);
 
 export default app;

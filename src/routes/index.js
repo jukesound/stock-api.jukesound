@@ -1,12 +1,5 @@
-import express from "express";
+import items from "routes/items";
 
-const router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.send({
-    title: 'rootPage'
-  });
-});
-
-export default router;
+export default {
+  items,
+};

@@ -1,12 +1,12 @@
 import express from 'express';
 const router = express.Router();
 
-import ItemController from 'controllers/Items'
+import controllers from 'controllers'
 
-router.get('/', ItemController.all());
-router.get('/:id', ItemController.get());
-router.post('/', ItemController.post());
-router.put('/:id', ItemController.patch());
-router.delete('/:id', ItemController.delete());
+router.get('/', controllers.Item.all());
+router.get('/:id', controllers.Item.get());
+router.post('/', controllers.Item.post());
+router.put('/:id', controllers.Item.patch());
+router.delete('/:id', controllers.Item.delete());
 
 export default router;

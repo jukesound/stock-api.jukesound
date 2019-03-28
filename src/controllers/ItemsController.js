@@ -1,30 +1,30 @@
-import Item from 'models/Item'
+import models from 'models'
 
 class ItemController {
   static all() {
     return (req, res) => {
-      Item.findAll()
+      models.Item.findAll()
         .then(body => res.send(body))
         .catch(err => console.log(err));
       }
   };
   static get() {
     return (req, res) => {
-      Item.findByPk(req.params.id)
+      models.Item.findByPk(req.params.id)
         .then(body => res.send(body))
         .catch(err => console.log(err));
     }
   };
   static post() {
     return (req, res) => {
-      Item.create(req.body)
+      models.Item.create(req.body)
         .then(body => res.send(body))
         .catch(err => console.log(err));
     }
   };
   static patch() {
     return (req, res) => {
-      Item.update(req.body, {
+      models.Item.update(req.body, {
         where: {
           id: req.params.id,
         }
@@ -34,7 +34,7 @@ class ItemController {
   };
   static delete() {
     return (req, res) => {
-      Item.destroy({
+      models.Item.destroy({
         where: {
           id: req.params.id,
         }
