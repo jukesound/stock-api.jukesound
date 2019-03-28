@@ -1,8 +1,8 @@
-'use strict';
+// @refactor: use config file for tablePrefix
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('js_items', {
+    return queryInterface.createTable('jss_items', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -11,21 +11,34 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
-      type: {
+      slug: {
         type: Sequelize.STRING,
-      },
-      createdAt: {
-        type: Sequelize.DATE,
         allowNull: false,
       },
-      updatedAt: {
-        type: Sequelize.DATE,
+      quantity: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-      }
+      },
+      quantity_buy: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      price: {
+        type: Sequelize.FLOAT,
+      },
+      url: {
+        type: Sequelize.TEXT,
+      },
+      image: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
     });
   },
+
   down: (queryInterface) => {
-    return queryInterface.dropTable('js_items');
+    return queryInterface.dropTable('jss_items');
   }
 };

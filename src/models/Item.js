@@ -1,20 +1,8 @@
 import { Model, Sequelize } from "sequelize";
 import sequelize from "database";
 import config from "config"
-// Models
-// import Category from 'models/Category'
 
-class Item extends Model {
-  // get fullName() {
-  //   return this.firstname + ' ' + this.lastname;
-  // }
-  //
-  // set fullName(value) {
-  //   const names = value.split(' ');
-  //   this.setDataValue('firstname', names.slice(0, -1).join(' '));
-  //   this.setDataValue('lastname', names.slice(-1).join(' '));
-  // }
-}
+class Item extends Model {}
 
 Item.init({
   id: {
