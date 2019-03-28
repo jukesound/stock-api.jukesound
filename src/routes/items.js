@@ -35,7 +35,9 @@ router.post('/', function(req, res) {
  */
 router.put('/:id', function(req, res) {
   Item.update(req.body, {
-    where: { id: req.params.id }
+    where: {
+      id: req.params.id,
+    }
   }).then(body => res.send(body))
     .catch(err => console.log(err));
 });
@@ -44,16 +46,12 @@ router.put('/:id', function(req, res) {
  * DELETE ITEM
  */
 router.delete('/:id', function(req, res) {
-  const error = items.findIndex(item => parseInt(item.id) === parseInt(req.params.id));
-
-  if (error === -1) {
-    res.status(400).send({ error: 'Something failed!' });
-    return;
-  }
-
-  const newList = items.filter(item => parseInt(item.id) !== parseInt(req.params.id));
-
-  res.send(newList);
+  Item.destroy({
+    where: {
+      id: req.params.id,
+    }
+  }).then(body => res.send(body))
+    .catch(err => console.log(err));
 });
 
 
