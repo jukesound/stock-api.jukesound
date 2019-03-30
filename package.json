@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "server": "nodemon --exec babel-node ./src/bin/www",
-    "dev": "NODE_ENV=development npm-run-all server"
+    "dev": "NODE_ENV=development npm-run-all server",
+    "migrate": "babel-node node_modules/.bin/sequelize db:migrate",
+    "migrate:undo": "babel-node node_modules/.bin/sequelize db:migrate:undo",
+    "seed": "babel-node node_modules/.bin/sequelize db:seed:all",
+    "seed:undo": "babel-node node_modules/.bin/sequelize db:seed:undo:all"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -17,6 +21,7 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^5.1.0",
     "sequelize-cli": "^5.4.0",
+    "slugify": "^1.3.4",
     "sqlite3": "^4.0.6"
   },
   "devDependencies": {

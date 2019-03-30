@@ -1,8 +1,13 @@
 import { Model, Sequelize } from "sequelize";
 import sequelize from "database";
 import config from "config"
+import slugify from "utils/slugify";
 
-class Item extends Model {}
+class Item extends Model {
+  get slug() {
+    return this.getDataValue('name', slugify(name))
+  }
+}
 
 Item.init({
   id: {
@@ -12,10 +17,6 @@ Item.init({
     primaryKey: true,
   },
   name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  slug: {
     type: Sequelize.STRING,
     allowNull: false,
   },

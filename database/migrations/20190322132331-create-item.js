@@ -1,8 +1,8 @@
-// @refactor: use config file for tablePrefix
+import config from "../../config";
 
-module.exports = {
+export default {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('jss_items', {
+    return queryInterface.createTable("jss_items", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -10,10 +10,6 @@ module.exports = {
         primaryKey: true,
       },
       name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      slug: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -39,6 +35,6 @@ module.exports = {
   },
 
   down: (queryInterface) => {
-    return queryInterface.dropTable('jss_items');
-  }
+    return queryInterface.dropTable(`${config.tablePrefix}items`);
+  },
 };
