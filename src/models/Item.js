@@ -3,11 +3,7 @@ import sequelize from "database";
 import config from "config"
 import slugify from "utils/slugify";
 
-class Item extends Model {
-  get slug() {
-    return this.getDataValue('name', slugify(name))
-  }
-}
+class Item extends Model {}
 
 Item.init({
   id: {
@@ -19,6 +15,12 @@ Item.init({
   name: {
     type: Sequelize.STRING,
     allowNull: false,
+  },
+  slug: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return slugify(this.getDataValue('name'));
+    }
   },
   quantity: {
     type: Sequelize.INTEGER,
@@ -52,6 +54,13 @@ Item.init({
   timestamps: false,
   underscored: true,
   sequelize,
+  // @question: Wait Amine response
+  hooks: {
+    // afterCreate: (body) => {
+    //   console.log("body:", body)
+    //   body.slug = buildSlug(body.get('name'))
+    // },
+  }
 });
 
 export default Item;
