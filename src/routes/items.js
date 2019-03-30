@@ -6,7 +6,7 @@ import controllers from 'controllers'
 router.get('/', controllers.Item.all());
 router.get('/:id', controllers.Item.get());
 router.post('/', controllers.Item.post());
-router.put('/:id', controllers.Item.patch());
+router.put('/:id', controllers.Item.update());
 router.delete('/:id', controllers.Item.delete());
 
 export default router;

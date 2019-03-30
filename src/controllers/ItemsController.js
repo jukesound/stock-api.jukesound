@@ -22,12 +22,12 @@ class ItemController {
         .catch(err => console.log(err));
     }
   };
-  static patch() {
+  static update() {
     return (req, res) => {
       models.Item.update(req.body, {
         where: {
           id: req.params.id,
-        }
+        },
       }).then(body => res.send(body))
         .catch(err => console.log(err));
     }

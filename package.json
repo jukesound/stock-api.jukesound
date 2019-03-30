@@ -8,7 +8,8 @@
     "migrate": "babel-node node_modules/.bin/sequelize db:migrate",
     "migrate:undo": "babel-node node_modules/.bin/sequelize db:migrate:undo",
     "seed": "babel-node node_modules/.bin/sequelize db:seed:all",
-    "seed:undo": "babel-node node_modules/.bin/sequelize db:seed:undo:all"
+    "seed:undo": "babel-node node_modules/.bin/sequelize db:seed:undo:all",
+    "db:reset": "npm run migrate:undo && npm run migrate && npm run seed"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
