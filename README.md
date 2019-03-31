@@ -12,7 +12,9 @@ git clone https://github.com/jukesound/stock-api.jukesound.git
 npm i
 ``` 
 
-- .env 
+- Create your database
+
+- Change environment variables 
 ```bash
 cp .env-example .env # copy .env-example => .env
 
@@ -29,4 +31,17 @@ npm run db:reset
 npm run dev
 ``` 
 
-Postman resquest : `[GET] localhost:3000/items
+Postman resquest : `[GET] localhost:3000/items`
+
+# Heroku
+Auto deploy when master update
+
+```bash
+heroku run bash     # bash in heroku server
+heroku logs --tail  # view logs in live
+heroku config       # view .env
+heroku local web    # run heroku in local
+```
+
+
+Postman resquest : `[GET] https://stock-api-jukesound.herokuapp.com/items`
