@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start": "npm run server",
     "server": "nodemon --exec babel-node ./src/bin/www",
     "dev": "NODE_ENV=development npm-run-all server",
     "migrate": "babel-node node_modules/.bin/sequelize db:migrate",

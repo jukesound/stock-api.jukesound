@@ -62,6 +62,7 @@ Item.init({
         "slug": slugify(instance.attributes.name)
       };
 
+      // fixme: if slug already exist, slug don't change
       Item.update(slug, { where: { id: instance.where.id } })
     },
     beforeCreate: (instance) => {
