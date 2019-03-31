@@ -2,7 +2,7 @@ import config from "../../config";
 
 export default {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("jss_items", {
+    return queryInterface.createTable(config.table.prefix + config.table.items.name, {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -40,6 +40,6 @@ export default {
   },
 
   down: (queryInterface) => {
-    return queryInterface.dropTable(`${config.tablePrefix}items`);
+    return queryInterface.dropTable(config.table.prefix + config.table.items.name);
   },
 };

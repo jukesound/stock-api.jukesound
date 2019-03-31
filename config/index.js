@@ -1,5 +1,5 @@
-const index = {
-  tablePrefix: "jss_"
-};
+import table from 'config/table'
 
-export default index
+export default {
+  table,
+}

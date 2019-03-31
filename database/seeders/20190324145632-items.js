@@ -4,7 +4,7 @@ import faker from "faker";
 
 export default {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert(`${config.tablePrefix}items`, [{
+    return queryInterface.bulkInsert(config.table.prefix + config.table.items.name, [{
       name: faker.commerce.productMaterial(),
       quantity: Math.floor(faker.random.number(100)),
       quantity_buy: Math.floor(faker.random.number(20)),
@@ -15,6 +15,6 @@ export default {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete(`${config.tablePrefix}items`, null, {});
+    return queryInterface.bulkDelete(config.table.prefix + config.table.items.name, null, {});
   }
 };

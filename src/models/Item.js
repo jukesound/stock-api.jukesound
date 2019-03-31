@@ -50,7 +50,7 @@ Item.init({
   //   }
   // },
 }, {
-  tableName: `${config.tablePrefix}items`,
+  tableName: config.table.prefix + config.table.items.name,
   timestamps: false,
   underscored: true,
   sequelize,

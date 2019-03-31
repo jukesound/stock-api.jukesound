@@ -1,8 +1,9 @@
-import { config } from "dotenv"; config();
+import { config as dotenvConfig } from "dotenv"; dotenvConfig();
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
+import config from "config"
 import sequelize from 'database'
 
 // Routes
@@ -29,6 +30,6 @@ app.use(cookieParser());
  * Routes
  */
 // app.use('/', routes.home);
-app.use('/items', routes.items);
+app.use(config.table.items.route, routes.items);
 
 export default app;
