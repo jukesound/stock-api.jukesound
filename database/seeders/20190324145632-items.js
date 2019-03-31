@@ -1,15 +1,16 @@
 // 'use strict';
 import config from "../../config";
+import faker from "faker";
 
 export default {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(`${config.tablePrefix}items`, [{
-      name: 'Planche de bois',
-      quantity: 12,
-      quantity_buy: 10,
-      price: 5,
-      url: 'www.google.fr',
-      image: 'www.google.fr/image',
+      name: faker.commerce.productMaterial(),
+      quantity: Math.floor(faker.random.number(100)),
+      quantity_buy: Math.floor(faker.random.number(20)),
+      price: faker.random.number(100),
+      url: faker.internet.url(),
+      image: faker.image.imageUrl(),
     }], {});
   },
 
