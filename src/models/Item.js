@@ -17,10 +17,8 @@ Item.init({
     allowNull: false,
   },
   slug: {
-    type: Sequelize.VIRTUAL,
-    get() {
-      return slugify(this.getDataValue('name'));
-    }
+    type: Sequelize.STRING,
+    unique: true,
   },
   quantity: {
     type: Sequelize.INTEGER,
@@ -54,12 +52,25 @@ Item.init({
   timestamps: false,
   underscored: true,
   sequelize,
-  // @question: Wait Amine response
   hooks: {
-    // afterCreate: (body) => {
-    //   console.log("body:", body)
-    //   body.slug = buildSlug(body.get('name'))
-    // },
+    beforeBulkUpdate: (instance) => {
+      if (!instance.attributes.name) {
+        return;
+      }
+
+      const slug = {
+        "slug": slugify(instance.attributes.name)
+      };
+
+      Item.update(slug, { where: { id: instance.where.id } })
+    },
+    beforeCreate: (instance) => {
+      if (!instance.name) {
+        return;
+      }
+
+      instance.slug = slugify(instance.name);
+    },
   }
 });
 

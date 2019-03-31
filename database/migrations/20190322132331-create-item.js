@@ -13,11 +13,10 @@ export default {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      // @question: Wait Amine response
-      // slug: {
-      //   type: Sequelize.STRING,
-      //   unique: true,
-      // },
+      slug: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
       quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,
