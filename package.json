@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run server",
+    "start": "babel-node ./src/bin/www",
     "server": "nodemon --exec babel-node ./src/bin/www",
     "dev": "NODE_ENV=development npm-run-all server",
     "migrate": "babel-node node_modules/.bin/sequelize db:migrate",
@@ -24,15 +24,15 @@
     "sequelize": "^5.1.0",
     "sequelize-cli": "^5.4.0",
     "slugify": "^1.3.4",
-    "sqlite3": "^4.0.6"
-  },
-  "devDependencies": {
+    "sqlite3": "^4.0.6",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.0",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.4.2",
     "@types/node": "^11.12.0",
-    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-module-resolver": "^3.2.0"
+  },
+  "devDependencies": {
     "faker": "^4.1.0",
     "nodemon": "^1.18.10"
   }
