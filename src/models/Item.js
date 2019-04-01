@@ -54,16 +54,27 @@ Item.init({
   sequelize,
   hooks: {
     beforeBulkUpdate: (instance) => {
+      // don't update slug WHEN name don't change
       if (!instance.attributes.name) {
         return;
       }
 
-      const slug = {
+      const newSlug = {
         "slug": slugify(instance.attributes.name)
       };
 
-      // fixme: if slug already exist, slug don't change
-      Item.update(slug, { where: { id: instance.where.id } })
+      // @refactor use "controllers.Item.update();"
+      Item.update(newSlug, {
+          where: {
+            id: instance.where.id,
+          },
+        })
+        .then(() => {
+          console.log("slug updated", newSlug.slug)
+        })
+        .catch(err => {
+          console.error("fail to update slug:", err)
+        });
     },
     beforeCreate: (instance) => {
       if (!instance.name) {
