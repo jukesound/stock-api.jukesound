@@ -1,5 +1,5 @@
-import Item from "models/Item";
+import ItemsModel from "models/items.model";
 
 export default {
-  Item,
+  ItemsModel,
 };

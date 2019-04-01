@@ -3,9 +3,9 @@ import sequelize from "database";
 import config from "config"
 import slugify from "utils/slugify";
 
-class Item extends Model {}
+class ItemsModel extends Model {}
 
-Item.init({
+ItemsModel.init({
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -63,8 +63,8 @@ Item.init({
         "slug": slugify(instance.attributes.name)
       };
 
-      // @refactor use "controllers.Item.update();"
-      Item.update(newSlug, {
+      // @refactor use "controllers.ItemsModel.update();"
+      ItemsModel.update(newSlug, {
           where: {
             id: instance.where.id,
           },
@@ -86,4 +86,4 @@ Item.init({
   }
 });
 
-export default Item;
+export default ItemsModel;
