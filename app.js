@@ -29,7 +29,7 @@ app.use(cookieParser());
 /**
  * Routes
  */
-// app.use('/', routes.home);
-app.use(config.table.items.route, routes.items);
+// app.use('/', routes.homeRoute);
+app.use(config.table.items.route, routes.itemsRoute);
 
 export default app;

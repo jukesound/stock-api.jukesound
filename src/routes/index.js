@@ -1,5 +1,5 @@
-import items from "routes/items";
+import itemsRoute from "routes/items.route";
 
 export default {
-  items,
+  itemsRoute,
 };
