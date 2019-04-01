@@ -1,5 +1,5 @@
-import Item from "controllers/ItemsController";
+import ItemController from "controllers/items.controller";
 
 export default {
-  Item,
+  ItemController,
 };

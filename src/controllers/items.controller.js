@@ -3,7 +3,7 @@ import models from 'models'
 class ItemController {
   static all() {
     return (req, res) => {
-      models.Item.findAll()
+      models.ItemsModel.findAll()
         .then(body => {
           res.status(200).send(body);
         })
@@ -14,7 +14,7 @@ class ItemController {
   };
   static get() {
     return (req, res) => {
-      models.Item.findByPk(req.params.id)
+      models.ItemsModel.findByPk(req.params.id)
         .then(body => {
           res.status(200).send(body);
         })
@@ -25,7 +25,7 @@ class ItemController {
   };
   static post() {
     return (req, res) => {
-      models.Item.create(req.body)
+      models.ItemsModel.create(req.body)
         .then(body => {
           res.status(201).send(body);
         })
@@ -36,8 +36,7 @@ class ItemController {
   };
   static update() {
     return (req, res) => {
-      console.log("")
-      models.Item.update(req.body, {
+      models.ItemsModel.update(req.body, {
           where: {
             id: req.params.id,
           },
@@ -52,7 +51,7 @@ class ItemController {
   };
   static delete() {
     return (req, res) => {
-      models.Item.destroy({
+      models.ItemsModel.destroy({
           where: {
             id: req.params.id,
           }
