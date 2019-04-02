@@ -43,5 +43,14 @@ heroku config       # view .env
 heroku local web    # run heroku in local
 ```
 
-
 Postman resquest : `[GET] https://stock-api-jukesound.herokuapp.com/items`
+
+
+# Docker
+Auto deploy when master update
+
+```bash
+docker image ls            # List images
+docker container ls --all  # List containers
+```
+

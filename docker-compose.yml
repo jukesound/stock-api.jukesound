@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    container_name: jss_db
+    image: "postgres"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: stock-api.jukesound.dev
+    volumes:
+      - .pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  node:
+    container_name: jss_node
+    image: "node:latest"
+    volumes:
+      - ./:/app
+    working_dir: /app
+    depends_on:
+      - db
+    ports:
+      - 3000
+    command: "npm start"
