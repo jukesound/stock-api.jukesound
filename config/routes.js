@@ -1,6 +1,6 @@
 export default {
-  prefix: "jss_",
   items: {
+    path: '/items',
     name: 'items',
   },
 };

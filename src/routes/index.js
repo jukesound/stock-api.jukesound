@@ -1,5 +1,10 @@
-import itemsRoute from "routes/items.route";
+import express from "express";
+import config from "config"
 
-export default {
-  itemsRoute,
-};
+import itemsRoute from "routes/items.route";
+const router = express.Router();
+
+
+router.use(config.routes.items.path, itemsRoute);
+
+export default router
