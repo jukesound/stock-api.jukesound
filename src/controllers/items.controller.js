@@ -8,6 +8,7 @@ class ItemController {
           res.status(200).send(body);
         })
         .catch(err => {
+          console.log("err:", err);
           res.status(400).send(err);
         });
       }
@@ -19,6 +20,7 @@ class ItemController {
           res.status(200).send(body);
         })
         .catch(err => {
+          console.log("err:", err);
           res.status(400).send(err);
         });
     }
@@ -30,6 +32,7 @@ class ItemController {
           res.status(201).send(body);
         })
         .catch(err => {
+          console.log("err:", err);
           res.status(400).send(err);
         });
     }
@@ -45,6 +48,7 @@ class ItemController {
           res.status(200).send(`updated successfully a item with id = ${req.params.id}`);
         })
         .catch(err => {
+          // console.log("err:", err);
           res.status(400).send(err);
         });
     }
@@ -60,6 +64,7 @@ class ItemController {
           res.status(200).send(`deleted successfully a item with id = ${req.params.id}`);
         })
         .catch(err => {
+          console.log("err:", err);
           res.status(400).send(err);
         });
     }

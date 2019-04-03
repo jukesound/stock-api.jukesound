@@ -10,7 +10,8 @@
     "migrate:undo": "babel-node node_modules/.bin/sequelize db:migrate:undo",
     "seed": "babel-node node_modules/.bin/sequelize db:seed:all",
     "seed:undo": "babel-node node_modules/.bin/sequelize db:seed:undo:all",
-    "db:reset": "npm run migrate:undo && npm run migrate && npm run seed"
+    "db:reset": "npm run migrate:undo && npm run migrate && npm run seed",
+    "test": "jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -33,7 +34,9 @@
     "babel-plugin-module-resolver": "^3.2.0"
   },
   "devDependencies": {
+    "babel-jest": "^24.7.0",
     "faker": "^4.1.0",
+    "jest": "^24.7.0",
     "nodemon": "^1.18.10"
   }
 }

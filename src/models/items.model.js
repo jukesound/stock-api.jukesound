@@ -3,7 +3,46 @@ import sequelize from "database";
 import config from "config"
 import slugify from "utils/slugify";
 
-class ItemsModel extends Model {}
+class ItemsModel extends Model {
+  static canBuildSlug(instance){
+    if (instance.name && !instance.slug){
+      return true;
+    }
+
+    if (instance.slug && !instance.name){
+      if (instance.slug !== slugify(instance.slug)){
+        return true;
+      }
+    }
+
+    if (instance.slug && instance.name) {
+      if (instance.slug !== slugify(instance.slug)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+  static updateSlug(nameOrSlug, opt) {
+    console.log("----- updateSlug()");
+
+    const newSlug = {
+      "slug": slugify(nameOrSlug)
+    };
+
+    // @refactor use "controllers.ItemsModel.update();"
+    ItemsModel.update(newSlug, {
+        where: { id: opt.where.id, },
+      })
+      .then(() => console.log("[HOOK:beforeValidate] Slug updated:", newSlug.slug))
+      .catch(err => console.error("fail to update slug:", err));
+  }
+  static createSlug(nameOrSlug, instance) {
+    console.log("----- createSlug()");
+    instance.slug = slugify(nameOrSlug);
+  }
+}
+
 
 ItemsModel.init({
   id: {
@@ -53,35 +92,18 @@ ItemsModel.init({
   underscored: true,
   sequelize,
   hooks: {
-    beforeBulkUpdate: (instance) => {
+    beforeValidate: (instance, opt) => {
       // don't update slug WHEN name don't change
-      if (!instance.attributes.name) {
-        return;
+      if (!ItemsModel.canBuildSlug(instance)) {
+        return
       }
-
-      const newSlug = {
-        "slug": slugify(instance.attributes.name)
-      };
-
-      // @refactor use "controllers.ItemsModel.update();"
-      ItemsModel.update(newSlug, {
-          where: {
-            id: instance.where.id,
-          },
-        })
-        .then(() => {
-          console.log("slug updated", newSlug.slug)
-        })
-        .catch(err => {
-          console.error("fail to update slug:", err)
-        });
-    },
-    beforeCreate: (instance) => {
-      if (!instance.name) {
-        return;
+      const newSlug = instance.slug || instance.name;
+      // opt.where = update
+      if (opt.where && opt.where.id){
+        ItemsModel.updateSlug(newSlug, opt);
+      } else {
+        ItemsModel.createSlug(newSlug, instance);
       }
-
-      instance.slug = slugify(instance.name);
     },
   }
 });
