@@ -9,5 +9,3 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN npm ci
-
-#RUN npm run start
