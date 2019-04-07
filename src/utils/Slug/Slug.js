@@ -8,12 +8,14 @@ class Slug {
    * @example
    * import Slug from "utils/Slug/Slug"
    *
-   * const data = {
-   *   name: "My title",
-   *   quantity: 2
+   * const req = {
+   *   body: {
+   *     name: "My title",
+   *     quantity: 2
+   *   }
    * }
    *
-   * const body = Slug.addSlug(data);
+   * const body = Slug.addSlug(req.body);
    *
    * // body = {
    * //   name: "My title",
