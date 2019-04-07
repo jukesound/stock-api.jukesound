@@ -1,4 +1,28 @@
+/**
+ * Slug manipulation
+ */
 class Slug {
+  /**
+   * Add slug field to object
+   * @param {Object} body - Object with name or slug attribute
+   * @example
+   * import Slug from "utils/Slug/Slug"
+   *
+   * const data = {
+   *   name: "My title",
+   *   quantity: 2
+   * }
+   *
+   * const body = Slug.addSlug(data);
+   *
+   * // body = {
+   * //   name: "My title",
+   * //   slug: "my-title",
+   * //   quantity: 2
+   * // }
+   *
+   * @returns {Object} Returns same object + slug field
+   */
   static addSlug(body) {
     let mutableBody = {
       ...body,
@@ -13,6 +37,7 @@ class Slug {
 
     return mutableBody
   }
+
   static slugify(string) {
     const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;';
     const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------';

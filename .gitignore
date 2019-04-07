@@ -3,3 +3,4 @@
 .env
 .pgdata
 /coverage/
+/docs/
