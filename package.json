@@ -12,7 +12,7 @@
     "seed:undo": "babel-node node_modules/.bin/sequelize db:seed:undo:all",
     "db:reset": "npm run migrate:undo && npm run migrate && npm run seed",
     "test": "jest",
-    "generate-docs": "rm -rf out/ && node_modules/.bin/jsdoc -c .jsdoc.json -r ."
+    "generate-docs": "rm -rf docs/ && node_modules/.bin/jsdoc -c .jsdoc.json -r ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
