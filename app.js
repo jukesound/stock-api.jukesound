@@ -1,4 +1,4 @@
-import { config as dotenvConfig } from "dotenv"; dotenvConfig();
+import { config as dotenvConfig, } from "dotenv"; dotenvConfig();
 import express from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
@@ -20,8 +20,8 @@ sequelize.authenticate()
  */
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false, }));
 app.use(cookieParser());
 app.use(routes);
 
-export default app
+export default app;

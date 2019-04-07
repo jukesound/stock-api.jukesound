@@ -1,6 +1,6 @@
 // 'use strict';
 import config from "../../config";
-import Slug from "utils/Slug/Slug"
+import Slug from "utils/Slug/Slug";
 import faker from "faker";
 
 export default {
@@ -16,10 +16,10 @@ export default {
       price: faker.random.number(100),
       url: faker.internet.url(),
       image: faker.image.imageUrl(),
-    }], {});
+    },], {});
   },
 
   down: (queryInterface) => {
     return queryInterface.bulkDelete(config.table.prefix + config.table.items.name, null, {});
-  }
+  },
 };

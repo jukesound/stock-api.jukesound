@@ -1,6 +1,6 @@
-import { Model, Sequelize } from "sequelize";
+import { Model, Sequelize, } from "sequelize";
 import sequelize from "database";
-import config from "config"
+import config from "config";
 
 class ItemsModel extends Model {}
 

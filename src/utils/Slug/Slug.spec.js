@@ -1,7 +1,7 @@
-import Slug from "utils/Slug/Slug"
+import Slug from "utils/Slug/Slug";
 
-describe('_canBuildSlug()', () => {
-  describe('Build', () => {
+describe("_canBuildSlug()", () => {
+  describe("Build", () => {
     it("Change name", () => {
       const mockPayload = {
         "name": "My new title"
@@ -67,7 +67,7 @@ describe('_canBuildSlug()', () => {
   });
 });
 
-describe('_buildSlug()', () => {
+describe("_buildSlug()", () => {
   it("change name", () => {
     const mockPayload = {
       "name": "My new title"
@@ -101,7 +101,7 @@ describe('_buildSlug()', () => {
   });
 });
 
-describe('addSlug()', () => {
+describe("addSlug()", () => {
   it("change name + quantity", () => {
     const mockPayload = {
       "name": "My new titlé",

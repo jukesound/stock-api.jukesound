@@ -1,5 +1,5 @@
 import express from "express";
-import config from "config"
+import config from "config";
 
 import itemsRoute from "routes/items.route";
 const router = express.Router();
@@ -7,4 +7,4 @@ const router = express.Router();
 
 router.use(config.routes.items.path, itemsRoute);
 
-export default router
+export default router;
