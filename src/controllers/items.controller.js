@@ -1,4 +1,5 @@
 import models from 'models'
+import Slug from 'utils/Slug/Slug'
 
 class ItemController {
   static all() {
@@ -27,7 +28,9 @@ class ItemController {
   };
   static post() {
     return (req, res) => {
-      models.ItemsModel.create(req.body)
+      const body = Slug.addSlug(req.body);
+
+      models.ItemsModel.create(body)
         .then(body => {
           res.status(201).send(body);
         })
@@ -39,7 +42,9 @@ class ItemController {
   };
   static update() {
     return (req, res) => {
-      models.ItemsModel.update(req.body, {
+      const body = Slug.addSlug(req.body);
+
+      models.ItemsModel.update(body, {
           where: {
             id: req.params.id,
           },

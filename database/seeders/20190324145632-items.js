@@ -1,12 +1,12 @@
 // 'use strict';
 import config from "../../config";
-import slugify from "utils/slugify"
+import Slug from "utils/Slug/Slug"
 import faker from "faker";
 
 export default {
-  up: (queryInterface, Sequelize) => {
+  up: (queryInterface) => {
     const name = faker.commerce.productMaterial();
-    const slug = slugify(name);
+    const slug = Slug.slugify(name);
 
     return queryInterface.bulkInsert(config.table.prefix + config.table.items.name, [{
       name: name,
@@ -19,7 +19,7 @@ export default {
     }], {});
   },
 
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface) => {
     return queryInterface.bulkDelete(config.table.prefix + config.table.items.name, null, {});
   }
 };

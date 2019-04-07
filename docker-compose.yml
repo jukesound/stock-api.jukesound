@@ -24,4 +24,4 @@ services:
       - "3000:3000"
     command: >
       sh -c "./src/bin/wait-for.sh jss_db:${DATABASE_PORT}
-      && npm run start"
+      && npm run dev"
