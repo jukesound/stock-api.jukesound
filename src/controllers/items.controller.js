@@ -1,16 +1,19 @@
-import models from 'models'
-import Slug from 'utils/Slug/Slug'
+import models from "models"
+import Slug from "utils/Slug/Slug"
+import config from "config"
+
+const { httpCode } = config;
 
 class ItemController {
   static all() {
     return (req, res) => {
       models.ItemsModel.findAll()
         .then(body => {
-          res.status(200).send(body);
+          res.status(httpCode.ok).send(body);
         })
         .catch(err => {
           console.log("err:", err);
-          res.status(400).send(err);
+          res.status(httpCode.badRequest).send(err);
         });
       }
   };
@@ -18,11 +21,11 @@ class ItemController {
     return (req, res) => {
       models.ItemsModel.findByPk(req.params.id)
         .then(body => {
-          res.status(200).send(body);
+          res.status(httpCode.ok).send(body);
         })
         .catch(err => {
           console.log("err:", err);
-          res.status(400).send(err);
+          res.status(httpCode.badRequest).send(err);
         });
     }
   };
@@ -32,11 +35,11 @@ class ItemController {
 
       models.ItemsModel.create(body)
         .then(body => {
-          res.status(201).send(body);
+          res.status(httpCode.created).send(body);
         })
         .catch(err => {
           console.log("err:", err);
-          res.status(400).send(err);
+          res.status(httpCode.badRequest).send(err);
         });
     }
   };
@@ -50,11 +53,11 @@ class ItemController {
           },
         })
         .then(() => {
-          res.status(200).send(`updated successfully a item with id = ${req.params.id}`);
+          res.status(httpCode.ok).send(`updated successfully a item with id = ${req.params.id}`);
         })
         .catch(err => {
           // console.log("err:", err);
-          res.status(400).send(err);
+          res.status(httpCode.badRequest).send(err);
         });
     }
   };
@@ -66,11 +69,11 @@ class ItemController {
           }
         })
         .then(() => {
-          res.status(200).send(`deleted successfully a item with id = ${req.params.id}`);
+          res.status(httpCode.ok).send(`deleted successfully a item with id = ${req.params.id}`);
         })
         .catch(err => {
           console.log("err:", err);
-          res.status(400).send(err);
+          res.status(httpCode.badRequest).send(err);
         });
     }
   };
