@@ -11,7 +11,7 @@
     "seed": "babel-node node_modules/.bin/sequelize db:seed:all",
     "seed:undo": "babel-node node_modules/.bin/sequelize db:seed:undo:all",
     "db:reset": "npm run migrate:undo && npm run migrate && npm run seed",
-    "test": "jest *.spec.*",
+    "test": "jest",
     "generate-docs": "rm -rf out/ && node_modules/.bin/jsdoc -c .jsdoc.json -r ."
   },
   "dependencies": {
