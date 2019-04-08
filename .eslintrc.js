@@ -30,9 +30,12 @@ module.exports = {
 			"always"
 		],
 		"no-console": "off",
-		"comma-dangle": [
-			"error",
-			"always"
-		],
+		"comma-dangle": ["error", {
+			"arrays": "always",
+			"objects": "always",
+			"imports": "never",
+			"exports": "never",
+			"functions": "ignore"
+		}]
 	}
 };

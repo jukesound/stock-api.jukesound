@@ -39,7 +39,6 @@ class Slug {
 
     return mutableBody;
   }
-
   static slugify(string) {
     const a = "àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;";
     const b = "aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------";

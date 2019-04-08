@@ -1,7 +1,9 @@
-import { config as dotenvConfig, } from "dotenv"; dotenvConfig();
+import { config as dotenvConfig } from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+
+dotenvConfig();
 
 import sequelize from "database";
 import routes from "routes";

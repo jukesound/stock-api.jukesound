@@ -1,5 +1,1 @@
-import ItemsModel from "models/items.model";
-
-export default {
-  ItemsModel,
-};
+export { default as ItemsModel } from "models/items.model";

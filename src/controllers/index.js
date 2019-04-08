@@ -1,5 +1,1 @@
-import ItemController from "controllers/items.controller";
-
-export default {
-  ItemController,
-};
+export { default as ItemController } from "controllers/items.controller";
