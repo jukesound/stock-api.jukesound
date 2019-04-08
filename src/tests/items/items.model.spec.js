@@ -9,8 +9,8 @@ beforeEach(async () => {
   await sequelize.sync({ force: true })
 });
 
-it("", async () => {
-  const expectedItems = ItemsFactory.default();
+it("[GET] - all fields", async () => {
+  const expectedItems = ItemsFactory.allFields();
   await expectedItems.save();
 
   // test get expectedItems

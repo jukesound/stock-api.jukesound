@@ -18,6 +18,7 @@ ItemsModel.init({
   slug: {
     type: Sequelize.STRING,
     unique: true,
+    allowNull: false,
   },
   quantity: {
     type: Sequelize.INTEGER,
