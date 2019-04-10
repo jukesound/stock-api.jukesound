@@ -1,6 +1,6 @@
 export default {
   items: {
-    path: "/items",
-    name: "items",
+    path: '/items',
+    name: 'items',
   },
 };

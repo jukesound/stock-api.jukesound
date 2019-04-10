@@ -25,7 +25,7 @@ class Slug {
    *
    * @returns {Object} Returns same object + slug field
    */
-  static addSlug(body) {
+  static addSlug (body) {
     let mutableBody = {
       ...body,
     };
@@ -39,10 +39,10 @@ class Slug {
 
     return mutableBody;
   }
-  static slugify(string) {
-    const a = "àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;";
-    const b = "aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------";
-    const p = new RegExp(a.split("").join("|"), "g");
+  static slugify (string) {
+    const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;';
+    const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------';
+    const p = new RegExp(a.split('').join('|'), 'g');
 
     /* eslint-disable */
     return string.toString().toLowerCase()

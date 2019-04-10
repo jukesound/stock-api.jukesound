@@ -1,33 +1,33 @@
-import { ItemsModel } from "models";
-import Slug from "utils/Slug/Slug";
-import config from "config";
+import { ItemsModel } from 'models';
+import Slug from 'utils/Slug/Slug';
+import config from 'config';
 
 class ItemController {
-  static all() {
+  static all () {
     return (req, res) => {
       ItemsModel.findAll()
         .then(body => {
           res.status(config.httpCode.ok).send(body);
         })
         .catch(err => {
-          console.log("err:", err);
+          console.log('err:', err);
           res.status(config.httpCode.badRequest).send(err);
         });
     };
   }
-  static get() {
+  static get () {
     return (req, res) => {
       ItemsModel.findByPk(req.params.id)
         .then(body => {
           res.status(config.httpCode.ok).send(body);
         })
         .catch(err => {
-          console.log("err:", err);
+          console.log('err:', err);
           res.status(config.httpCode.badRequest).send(err);
         });
     };
   }
-  static post() {
+  static post () {
     return (req, res) => {
       const body = Slug.addSlug(req.body);
 
@@ -36,12 +36,12 @@ class ItemController {
           res.status(config.httpCode.created).send(body);
         })
         .catch(err => {
-          console.log("err:", err);
+          console.log('err:', err);
           res.status(config.httpCode.badRequest).send(err);
         });
     };
   }
-  static update() {
+  static update () {
     return (req, res) => {
       const body = Slug.addSlug(req.body);
 
@@ -59,7 +59,7 @@ class ItemController {
         });
     };
   }
-  static delete() {
+  static delete () {
     return (req, res) => {
       ItemsModel.destroy({
         where: {
@@ -70,7 +70,7 @@ class ItemController {
           res.status(config.httpCode.ok).send(`deleted successfully a item with id = ${req.params.id}`);
         })
         .catch(err => {
-          console.log("err:", err);
+          console.log('err:', err);
           res.status(config.httpCode.badRequest).send(err);
         });
     };

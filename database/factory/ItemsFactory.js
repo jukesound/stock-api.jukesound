@@ -1,10 +1,10 @@
-import faker from "faker";
+import faker from 'faker';
 
-import { ItemsModel } from "models";
-import Slug from "utils/Slug/Slug";
+import { ItemsModel } from 'models';
+import Slug from 'utils/Slug/Slug';
 
 class ItemsFactory {
-  static requiredFields(){
+  static requiredFields () {
     const item = new ItemsModel();
 
     item.name = faker.commerce.productMaterial();
@@ -15,7 +15,7 @@ class ItemsFactory {
 
     return item;
   }
-  static allFields(){
+  static allFields () {
     const item = ItemsFactory.requiredFields();
 
     item.price = faker.random.number(100);
