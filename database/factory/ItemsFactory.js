@@ -16,7 +16,7 @@ class ItemsFactory {
     return item;
   }
   static allFields () {
-    const item = ItemsFactory.requiredFields();
+    const item = this.requiredFields();
 
     item.price = faker.random.number(100);
     item.url = faker.internet.url();
