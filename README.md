@@ -7,13 +7,6 @@
 git clone https://github.com/jukesound/stock-api.jukesound.git
 ``` 
 
-- Install dependencies 
-```bash
-npm i
-``` 
-
-- Create your database
-
 - Change environment variables 
 ```bash
 cp .env-example .env # copy .env-example => .env
@@ -21,14 +14,14 @@ cp .env-example .env # copy .env-example => .env
 # Remplace all dummy value 
 ``` 
 
-- Migrate and seed database 
+- Launch docker 
 ```bash
-npm run db:reset
+docker-compose up
 ``` 
 
-- Launch server 
+- Migrate and seed database 
 ```bash
-npm run dev
+npm run docker:db:reset
 ``` 
 
 Postman resquest : `[GET] localhost:3000/items`
@@ -47,10 +40,8 @@ Postman resquest : `[GET] https://stock-api-jukesound.herokuapp.com/items`
 
 
 # Docker
-Auto deploy when master update
-
 ```bash
-docker image ls            # List images
-docker container ls --all  # List containers
+docker-compose up
+npm run docker:db:reset # migrate + seed inside docker container
 ```
 
