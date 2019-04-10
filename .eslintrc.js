@@ -1,9 +1,10 @@
 module.exports = {
 	"env": {
 		"es6": true,
-		"node": true
+		"node": true,
+		"jest": true
 	},
-	"extends": "eslint:recommended",
+	"extends": ["standard", "plugin:jest/recommended"],
 	"globals": {
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly"
@@ -13,29 +14,17 @@ module.exports = {
 		"sourceType": "module"
 	},
 	"rules": {
-		"indent": [
-			"error",
-			2
-		],
-		"linebreak-style": [
-			"error",
-			"unix"
-		],
-		"quotes": [
-			"error",
-			"double"
-		],
-		"semi": [
-			"error",
-			"always"
-		],
-		"no-console": "off",
 		"comma-dangle": ["error", {
 			"arrays": "always",
 			"objects": "always",
 			"imports": "never",
 			"exports": "never",
 			"functions": "ignore"
-		}]
+		}],
+		"semi": [
+			"error",
+			"always"
+		],
+		"plugins": ["jest"]
 	}
 };
