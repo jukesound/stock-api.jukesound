@@ -1,7 +1,7 @@
-// 'use strict';
-import config from "../../config";
-import Slug from "utils/Slug/Slug";
-import faker from "faker";
+import faker from 'faker';
+
+import config from 'config';
+import Slug from 'utils/Slug/Slug';
 
 export default {
   up: (queryInterface) => {
@@ -16,7 +16,7 @@ export default {
       price: faker.random.number(100),
       url: faker.internet.url(),
       image: faker.image.imageUrl(),
-    },], {});
+    }, ], {});
   },
 
   down: (queryInterface) => {
