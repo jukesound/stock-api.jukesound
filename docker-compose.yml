@@ -14,14 +14,19 @@ services:
 
   jss_node:
     container_name: jss_node
-    image: "node:alpine"
+    image: "jss_node:1.0.0"
+    build:
+      context: ./
+      dockerfile: Dockerfile
     volumes:
       - ./:/app
     working_dir: /app
-    depends_on:
-      - jss_db
     ports:
       - "3000:3000"
+    links:
+      - jss_db:jss_db
+    depends_on:
+      - jss_db
     command: >
       sh -c "./src/bin/wait-for.sh jss_db:${DATABASE_PORT}
       && npm run dev"

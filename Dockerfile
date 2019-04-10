@@ -1,11 +1,6 @@
-FROM node:latest
+FROM node:alpine
 
-COPY . /usr/app
-WORKDIR /usr/app
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    vim \
-    && rm -rf /var/lib/apt/lists/*
+COPY . /app
+WORKDIR /app
 
 RUN npm ci

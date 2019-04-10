@@ -11,6 +11,7 @@
     "seed": "babel-node node_modules/.bin/sequelize db:seed:all",
     "seed:undo": "babel-node node_modules/.bin/sequelize db:seed:undo:all",
     "db:reset": "npm run migrate:undo && npm run migrate && npm run seed",
+    "docker:db:reset": "docker-compose exec jss_node npm run db:reset",
     "test": "eslint --ext .js . && jest",
     "generate-docs": "rm -rf docs/ && node_modules/.bin/jsdoc -c .jsdoc.json -r ."
   },
