@@ -16,19 +16,13 @@ class ItemController {
     });
     res.status(config.httpCode.ok).json(body);
   }
-  static post () {
-    return (req, res) => {
-      const body = Slug.addSlug(req.body);
+  static async post (req, res) {
+    let body;
+    const mutableBody = await Slug.addSlug(req.body);
+    await ItemsModel.validators(mutableBody, ItemsModel.schemaDefault());
 
-      ItemsModel.create(body)
-        .then(body => {
-          res.status(config.httpCode.created).json(body);
-        })
-        .catch(err => {
-          console.log('err:', err);
-          res.status(config.httpCode.badRequest).json(err);
-        });
-    };
+    body = await ItemsModel.create(mutableBody);
+    res.status(config.httpCode.created).json(body);
   }
   static async update (req, res) {
     let item;

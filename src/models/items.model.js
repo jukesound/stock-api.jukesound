@@ -1,12 +1,12 @@
 import * as Joi from 'joi';
 import { Model, Sequelize } from 'sequelize';
+
 import sequelize from 'database';
 import config from 'config';
 
 class ItemsModel extends Model {
   static schemaDefault () {
     return Joi.object().keys({
-      id: Joi.number().integer().required(),
       name: Joi.string().required(),
       slug: Joi.string().required(),
       quantity: Joi.number().integer().required(),
