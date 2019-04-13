@@ -8,21 +8,13 @@ class ItemController {
 
     res.status(config.httpCode.ok).json(body);
   }
-  static get () {
-    return (req, res) => {
-      ItemsModel.findOne({
-        where: {
-          id: req.params.id,
-        },
-      })
-        .then(body => {
-          res.status(config.httpCode.ok).json(body);
-        })
-        .catch(err => {
-          console.log('err:', err);
-          res.status(config.httpCode.badRequest).json(err);
-        });
-    };
+  static async get (req, res) {
+    const body = await ItemsModel.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(config.httpCode.ok).json(body);
   }
   static post () {
     return (req, res) => {
