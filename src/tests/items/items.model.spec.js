@@ -1,12 +1,13 @@
-import { config } from 'dotenv';
+import { config as dotenvConfig } from 'dotenv';
 import request from 'supertest';
 
+import config from 'config';
 import sequelize from 'database';
 import app from '/app.js';
 import ItemsFactory from 'database/factory/ItemsFactory';
 import Items from 'models/items.model';
 
-config();
+dotenvConfig();
 
 describe('global description', () => {
   beforeEach(async () => {
@@ -15,15 +16,14 @@ describe('global description', () => {
   });
 
   it('[GET] - all fields', async () => {
-    const expectedItems = ItemsFactory.allFields();
-    await expectedItems.save();
-
+    // Create 2 items
+    const expectedItems = await ItemsFactory.allFields().save();
     const expectedItems2 = await ItemsFactory.allFields().save();
 
-    const res = await request(app).get('/items');
-    // console.log(res.body);
+    // route: GET /items
+    const res = await request(app).get(config.routes.items.path);
 
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(config.httpCode.ok);
     expect(res.body.length).toBe(2);
     expect(res.body[0].id).toBe(expectedItems.id);
     expect(res.body[1].id).toBe(expectedItems2.id);
