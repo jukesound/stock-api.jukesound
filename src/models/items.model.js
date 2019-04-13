@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import * as Joi from 'joi';
 import { Model, Sequelize } from 'sequelize';
 import sequelize from 'database';
 import config from 'config';

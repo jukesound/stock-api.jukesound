@@ -1,8 +1,8 @@
 import { config } from 'dotenv';
-import sequelize from 'database';
 import request from 'supertest';
 
-import app from '../../../app.js';
+import sequelize from 'database';
+import app from '/app.js';
 import ItemsFactory from 'database/factory/ItemsFactory';
 import Items from 'models/items.model';
 
