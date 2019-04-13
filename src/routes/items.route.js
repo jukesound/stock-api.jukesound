@@ -1,12 +1,11 @@
 import express from 'express';
 
 import { ItemController } from 'controllers';
-
-import { asyncErrorHandler } from './handler/errors';
+import { asyncErrorHandler } from 'routes/handler/errors';
 
 const router = express.Router();
 
-router.get('/', ItemController.all());
+router.get('/', asyncErrorHandler(ItemController.all));
 router.get('/:id', ItemController.get());
 router.post('/', ItemController.post());
 router.patch('/:id', asyncErrorHandler(ItemController.update));
