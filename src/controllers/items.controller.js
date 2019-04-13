@@ -42,24 +42,28 @@ class ItemController {
 
     // update in db
     item = await item.update(body);
-    // send
+
+    // send item updated
     res.json(item);
   }
-  static delete () {
-    return (req, res) => {
-      ItemsModel.destroy({
-        where: {
-          id: req.params.id,
-        },
-      })
-        .then(() => {
-          res.status(config.httpCode.ok).json(`deleted successfully a item with id = ${req.params.id}`);
-        })
-        .catch(err => {
-          console.log('err:', err);
-          res.status(config.httpCode.badRequest).json(err);
-        });
-    };
+  static async delete (req, res) {
+    // Select item
+    let item = await ItemsModel.findOne({
+      rejectOnEmpty: true,
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    // destroy item
+    await ItemsModel.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    // send item destroyed
+    res.status(config.httpCode.ok).json(item);
   }
 }
 
