@@ -8,9 +8,40 @@ export const asyncErrorHandler = fn => (req, res, next) => {
         return res.sendStatus(config.httpCode.serverError);
       }
 
-      res.status(config.httpCode.serverError).json({
-        message: err.message,
-        stack: err.stack,
-      });
+      const error = _buildError(err);
+
+      res.status(error.status).json(error);
     });
 };
+
+function _buildError (err) {
+  let errorBuilded = {
+    name: err.name || null,
+    status: config.httpCode.serverError,
+    isJoi: false,
+  };
+
+  if (
+    err.name === 'SequelizeUniqueConstraintError' ||
+    err.name === 'ValidationError'
+  ) {
+    errorBuilded.status = config.httpCode.badRequest;
+  }
+
+  if (err.name === 'SequelizeEmptyResultError') {
+    errorBuilded.status = config.httpCode.notFound;
+  }
+
+  if (err.isJoi) {
+    errorBuilded.isJoi = err.isJoi;
+    errorBuilded.details = err.details;
+    errorBuilded._object = err._object;
+  }
+
+  if (err.name === 'SequelizeUniqueConstraintError') {
+    errorBuilded.errors = err.errors;
+    errorBuilded.fields = err.fields;
+  }
+
+  return errorBuilded;
+}
