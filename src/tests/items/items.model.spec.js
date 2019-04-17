@@ -5,30 +5,46 @@ import config from 'config';
 import sequelize from 'database';
 import app from '/app.js';
 import ItemsFactory from 'database/factory/ItemsFactory';
-import Items from 'models/items.model';
 
 dotenvConfig();
 
-describe('global description', () => {
+describe('Routes', () => {
   beforeEach(async () => {
+    // connect to database
     await sequelize.authenticate();
+    // reset database
     await sequelize.sync({ force: true, });
   });
 
-  it('[GET] - all fields', async () => {
+  it('GET ' + config.routes.items.path + ' ' + config.httpCode.ok + ' - all fields filled', async () => {
     // Create 2 items
     const expectedItems = await ItemsFactory.allFields().save();
     const expectedItems2 = await ItemsFactory.allFields().save();
 
     // route: GET /items
-    const res = await request(app).get(config.routes.items.path);
+    const res = await request(app)
+      .get(config.routes.items.path);
 
+    // tests
     expect(res.status).toBe(config.httpCode.ok);
     expect(res.body.length).toBe(2);
-    expect(res.body[0].id).toBe(expectedItems.id);
-    expect(res.body[1].id).toBe(expectedItems2.id);
-    res.body[0].id = 'je suis une erreur';
-    console.log(Items.validators(res.body[0]));
+    expect(res.body[0]).toMatchObject(expectedItems.dataValues);
+    expect(res.body[1]).toMatchObject(expectedItems2.dataValues);
+  });
+
+  it('POST ' + config.routes.items.path + ' ' + config.httpCode.ok + ' - all fields filled', async () => {
+    // Mock body
+    const body = await ItemsFactory.allFields().dataValues;
+    delete body.id; // don't send id
+
+    // route: GET /items
+    const res = await request(app)
+      .post(config.routes.items.path)
+      .send(body);
+
+    // tests
+    expect(res.status).toBe(config.httpCode.created);
+    expect(res.body).toMatchObject(body);
   });
 
   afterAll(async done => {

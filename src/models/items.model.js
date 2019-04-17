@@ -37,9 +37,9 @@ class ItemsModel extends Model {
 ItemsModel.init({
   id: {
     type: Sequelize.INTEGER,
-    allowNull: false,
     autoIncrement: true,
     primaryKey: true,
+    allowNull: false,
   },
   name: {
     type: Sequelize.STRING,

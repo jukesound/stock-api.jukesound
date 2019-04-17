@@ -4,6 +4,10 @@ import { ItemsModel } from 'models';
 import Slug from 'utils/Slug/Slug';
 
 class ItemsFactory {
+  /**
+   * Only required fields filled
+   * @returns {ItemsModel}
+   */
   static requiredFields () {
     const item = new ItemsModel();
 
@@ -15,6 +19,11 @@ class ItemsFactory {
 
     return item;
   }
+
+  /**
+   * All fields filled
+   * @returns {ItemsModel}
+   */
   static allFields () {
     const item = this.requiredFields();
 
