@@ -9,7 +9,7 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {ItemInterface[]}
+   * @returns {Promise<ItemInterface[]>}
    */
   static async all (req, res) {
     // select all items
@@ -25,7 +25,7 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {ItemInterface}
+   * @returns {Promise<ItemInterface>}
    */
   static async get (req, res) {
     // select item
@@ -45,16 +45,16 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {ItemInterface}
+   * @returns {Promise<ItemInterface>}
    */
   static async post (req, res) {
-    // Add slug
-    const mutableBody = await Slug.addSlug(req.body);
-    // Validate
-    await ItemsModel.validators(mutableBody, ItemsModel.schemaDefault());
+    const mutatedBody = await ItemController._beforeCreateOrUpdate(
+      req.body,
+      ItemsModel.schemaDefault()
+    );
 
     // POST new item in db
-    const body = await ItemsModel.create(mutableBody);
+    const body = await ItemsModel.create(mutatedBody);
     // send item created
     res.status(config.httpCode.created).json(body);
   }
@@ -65,13 +65,13 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {ItemInterface}
+   * @returns {Promise<ItemInterface>}
    */
   static async update (req, res) {
-    // Add slug in response
-    const body = Slug.addSlug(req.body);
-    // Validation
-    await ItemsModel.validators(body, ItemsModel.schemaUpdate());
+    const mutatedBody = await ItemController._beforeCreateOrUpdate(
+      req.body,
+      ItemsModel.schemaUpdate()
+    );
 
     // Select item
     const item = await ItemsModel.findOne({
@@ -81,7 +81,7 @@ class ItemController {
       },
     });
     // update in db
-    await item.update(body);
+    await item.update(mutatedBody);
     // send item updated
     res.json(item);
   }
@@ -92,7 +92,7 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {ItemInterface}
+   * @returns {Promise<ItemInterface>}
    */
   static async delete (req, res) {
     // Select item
@@ -107,6 +107,25 @@ class ItemController {
     await item.destroy();
     // send item destroyed
     res.status(config.httpCode.ok).json(item);
+  }
+
+  /**
+   * Add slug and validate data
+   *
+   * @param {ItemDto} body
+   * @param {{}} schema
+   *
+   * @returns {Promise<ItemDto>}
+   *
+   * @private
+   */
+  static async _beforeCreateOrUpdate (body, schema) {
+    // Add slug in response
+    const mutableBody = Slug.addSlug(body);
+    // Validation
+    await ItemsModel.validators(mutableBody, schema);
+
+    return mutableBody;
   }
 }
 
