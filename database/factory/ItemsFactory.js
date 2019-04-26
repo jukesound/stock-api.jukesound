@@ -6,7 +6,7 @@ import Slug from 'utils/Slug/Slug';
 class ItemsFactory {
   /**
    * Only required fields filled
-   * @returns {ItemsModel}
+   * @returns {ItemsInterface}
    */
   static requiredFields () {
     const item = new ItemsModel();
@@ -22,7 +22,7 @@ class ItemsFactory {
 
   /**
    * All fields filled
-   * @returns {ItemsModel}
+   * @returns {ItemsInterface}
    */
   static allFields () {
     const item = this.requiredFields();

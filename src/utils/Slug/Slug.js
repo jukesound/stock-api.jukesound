@@ -4,7 +4,7 @@
 class Slug {
   /**
    * Add slug field to object
-   * @param {Object} body - Object with name or slug attribute
+   * @param {ItemDto} body - Object with name or slug attribute
    * @example
    * import Slug from "utils/Slug/Slug"
    *
@@ -37,6 +37,13 @@ class Slug {
       ...this._buildSlug(body),
     };
   }
+
+  /**
+   * Transform string into slug
+   *
+   * @param {string} string
+   * @returns {string}
+   */
   static slugify (string) {
     const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;';
     const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------';
@@ -52,6 +59,16 @@ class Slug {
       .replace(/^-+/, "") // Trim - from start of text
       .replace(/-+$/, ""); // Trim - from end of text
   }
+
+  /**
+   * Create object with slug field
+   *
+   * @param {ItemDto} body
+   *
+   * @returns {{slug: string}}
+   *
+   * @private
+   */
   static _buildSlug(body) {
     const string = body.slug || body.name;
 
@@ -59,6 +76,16 @@ class Slug {
       "slug": this.slugify(string),
     };
   }
+
+  /**
+   * Check if can build slug with body object
+   *
+   * @param {ItemDto} body
+   *
+   * @returns {boolean}
+   *
+   * @private
+   */
   static _canBuildSlug(body){
     if (body.name && !body.slug){
       return true;
