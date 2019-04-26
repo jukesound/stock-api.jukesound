@@ -3,6 +3,7 @@ import { Model, Sequelize } from 'sequelize';
 
 import sequelize from 'database';
 import config from 'config';
+import Slug from 'utils/Slug/Slug';
 
 class ItemsModel extends Model {
   static schemaDefault () {
@@ -79,7 +80,6 @@ ItemsModel.init({
   // },
 }, {
   tableName: config.table.prefix + config.table.items.name,
-  timestamps: false,
   underscored: true,
   sequelize,
 });

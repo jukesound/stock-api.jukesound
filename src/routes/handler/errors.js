@@ -10,6 +10,7 @@ export const asyncErrorHandler = fn => (req, res, next) => {
 
       const error = _buildError(err);
 
+      console.error(err);
       res.status(error.status).json(error);
     });
 };

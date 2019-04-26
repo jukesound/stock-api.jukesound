@@ -11,5 +11,9 @@ export default new Sequelize(
     dialect: process.env.DATABASE_DIALECT,
     host: process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT,
+    define: {
+      timestamps: false,
+      rejectOnEmpty: true,
+    },
   }
 );
