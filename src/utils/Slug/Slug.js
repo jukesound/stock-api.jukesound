@@ -26,18 +26,16 @@ class Slug {
    * @returns {Object} Returns same object + slug field
    */
   static addSlug (body) {
-    let mutableBody = {
-      ...body,
-    };
-
-    if (this._canBuildSlug(body)) {
-      mutableBody = {
-        ...mutableBody,
-        ...this._buildSlug(body),
-      };
+    // [Stop] return same object if can't build slug
+    if (!this._canBuildSlug(body)) {
+      return body;
     }
 
-    return mutableBody;
+    // [Stop] return object with slug
+    return {
+      ...body,
+      ...this._buildSlug(body),
+    };
   }
   static slugify (string) {
     const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;';
