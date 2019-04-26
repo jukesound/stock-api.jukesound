@@ -1,3 +1,5 @@
+import { ItemDto } from 'dto/items/ItemDto';
+
 /**
  * Slug manipulation
  */
@@ -25,7 +27,7 @@ class Slug {
    *
    * @returns {Object} Returns same object + slug field
    */
-  static addSlug (body) {
+  static addSlug (body:ItemDto): ItemDto {
     // [Stop] return same object if can't build slug
     if (!this._canBuildSlug(body)) {
       return body;
@@ -44,7 +46,7 @@ class Slug {
    * @param {string} string
    * @returns {string}
    */
-  static slugify (string) {
+  static slugify (string: string): string {
     const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;';
     const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------';
     const p = new RegExp(a.split('').join('|'), 'g');
@@ -69,7 +71,7 @@ class Slug {
    *
    * @private
    */
-  static _buildSlug(body) {
+  static _buildSlug(body: ItemDto): {slug:string} {
     const string = body.slug || body.name;
 
     return {
@@ -86,7 +88,7 @@ class Slug {
    *
    * @private
    */
-  static _canBuildSlug(body){
+  static _canBuildSlug(body: ItemDto): boolean {
     if (body.name && !body.slug){
       return true;
     }

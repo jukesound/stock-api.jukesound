@@ -8,7 +8,7 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemInterface[]>}
+   * @returns {Promise<ItemDto[]>}
    */
   static async all (req, res) {
     // [Get] all items
@@ -24,7 +24,7 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemInterface>}
+   * @returns {Promise<ItemDto>}
    */
   static async get (req, res) {
     // [Get] item
@@ -40,7 +40,7 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemInterface>}
+   * @returns {Promise<ItemDto>}
    */
   static async post (req, res) {
     // Mutate body
@@ -62,7 +62,7 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemInterface>}
+   * @returns {Promise<ItemDto>}
    */
   static async update (req, res) {
     // Mutate body
@@ -87,7 +87,7 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemInterface>}
+   * @returns {Promise<ItemDto>}
    */
   static async delete (req, res) {
     // [Get] item by id
