@@ -33,6 +33,43 @@ class ItemsModel extends Model {
   static validators (obj, schema) {
     return Joi.validate(obj, schema);
   }
+
+  /**
+   * Add slug and validate data
+   *
+   * @param {ItemDto} body
+   * @param {ObserverTypeEnum} type
+   *
+   * @returns {Promise<ItemDto>}
+   */
+  static async itemChanged (body, type) {
+    // Add slug in response
+    const mutableBody = Slug.addSlug(body);
+
+    // Validation
+    await this.validators(mutableBody, this._selectSchema(type));
+
+    return mutableBody;
+  }
+
+  /**
+   * Select validation schema
+   *
+   * @param {ObserverTypeEnum} type
+   *
+   * @returns {{}}
+   *
+   * @private
+   */
+  static _selectSchema (type) {
+    let schema = this.schemaDefault();
+
+    if (type === config.ObserverTypeEnum.UPDATE_ITEM) {
+      schema = this.schemaUpdate();
+    }
+
+    return schema;
+  }
 }
 
 ItemsModel.init({

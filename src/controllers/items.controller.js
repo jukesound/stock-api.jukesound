@@ -1,5 +1,4 @@
 import { ItemsModel } from 'models';
-import Slug from 'utils/Slug/Slug';
 import config from 'config';
 
 class ItemController {
@@ -12,10 +11,10 @@ class ItemController {
    * @returns {Promise<ItemInterface[]>}
    */
   static async all (req, res) {
-    // select all items
+    // [Get] all items
     const body = await ItemsModel.findAll();
 
-    // send all items
+    // [Send] all items
     res.status(config.httpCode.ok).json(body);
   }
 
@@ -28,14 +27,10 @@ class ItemController {
    * @returns {Promise<ItemInterface>}
    */
   static async get (req, res) {
-    // select item
-    const body = await ItemsModel.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
+    // [Get] item
+    const body = await ItemsModel.findByPk(req.params.id);
 
-    // send item selected
+    // [Send] item selected
     res.status(config.httpCode.ok).json(body);
   }
 
@@ -48,14 +43,16 @@ class ItemController {
    * @returns {Promise<ItemInterface>}
    */
   static async post (req, res) {
-    const mutatedBody = await ItemController._beforeCreateOrUpdate(
+    // Mutate body
+    const mutatedBody = await ItemsModel.itemChanged(
       req.body,
-      ItemsModel.schemaDefault()
+      config.ObserverTypeEnum.POST_ITEM
     );
 
-    // POST new item in db
+    // [Post] new item in db
     const body = await ItemsModel.create(mutatedBody);
-    // send item created
+
+    // [Send] item created
     res.status(config.httpCode.created).json(body);
   }
 
@@ -68,21 +65,19 @@ class ItemController {
    * @returns {Promise<ItemInterface>}
    */
   static async update (req, res) {
-    const mutatedBody = await ItemController._beforeCreateOrUpdate(
+    // Mutate body
+    const mutatedBody = await ItemsModel.itemChanged(
       req.body,
-      ItemsModel.schemaUpdate()
+      config.ObserverTypeEnum.UPDATE_ITEM
     );
 
-    // Select item
-    const item = await ItemsModel.findOne({
-      rejectOnEmpty: true,
-      where: {
-        id: req.params.id,
-      },
-    });
-    // update in db
+    // [Get] item by id
+    const item = await ItemsModel.findByPk(req.params.id);
+
+    // [Update] item selected
     await item.update(mutatedBody);
-    // send item updated
+
+    // [Send] item updated
     res.json(item);
   }
 
@@ -95,37 +90,14 @@ class ItemController {
    * @returns {Promise<ItemInterface>}
    */
   static async delete (req, res) {
-    // Select item
-    const item = await ItemsModel.findOne({
-      rejectOnEmpty: true,
-      where: {
-        id: req.params.id,
-      },
-    });
+    // [Get] item by id
+    const item = await ItemsModel.findByPk(req.params.id);
 
-    // destroy item in db
+    // [Delete] item in db
     await item.destroy();
-    // send item destroyed
+
+    // [Send] item destroyed
     res.status(config.httpCode.ok).json(item);
-  }
-
-  /**
-   * Add slug and validate data
-   *
-   * @param {ItemDto} body
-   * @param {{}} schema
-   *
-   * @returns {Promise<ItemDto>}
-   *
-   * @private
-   */
-  static async _beforeCreateOrUpdate (body, schema) {
-    // Add slug in response
-    const mutableBody = Slug.addSlug(body);
-    // Validation
-    await ItemsModel.validators(mutableBody, schema);
-
-    return mutableBody;
   }
 }
 
