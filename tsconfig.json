@@ -8,7 +8,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "/": ["./"],
       "src": ["./src"],
@@ -21,11 +21,7 @@
       "interfaces": ["./src/interfaces"]
     }
   },
-  "include": [
-    "**/*.ts"
-  ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }

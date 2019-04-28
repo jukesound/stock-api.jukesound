@@ -1,4 +1,4 @@
-export interface ItemInterface {
+export interface ItemsInterface {
   name: string;
   slug: string;
   quantity: number;
