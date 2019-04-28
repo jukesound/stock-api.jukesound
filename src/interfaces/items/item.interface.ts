@@ -1,4 +1,4 @@
-export interface ItemsInterface {
+interface ItemInterface {
   name: string;
   slug: string;
   quantity: number;
@@ -7,3 +7,5 @@ export interface ItemsInterface {
   price?: number;
   url?: string;
 }
+
+export default ItemInterface;

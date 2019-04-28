@@ -1,4 +1,4 @@
-import { ItemDto } from 'dto/items/ItemDto';
+import { ItemDto } from '@dto/index';
 
 /**
  * Slug manipulation

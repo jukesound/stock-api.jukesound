@@ -1,17 +1,17 @@
 import * as faker from 'faker';
 
-import { ItemsModel } from 'models';
-import Slug from 'utils/Slug/Slug';
-import ItemsInterface from 'interfaces/items/ItemsInterface';
+import { ItemsModel } from '@models/index';
+import { Slug } from '@utils/index';
+import { ItemInterface } from '@interfaces/index';
 
-// @todo: check if method return realy ItemsInterface (return ItemsModelInterface ?)
+// @todo: check if method return realy ItemInterface (return ItemsModelInterface ?)
 class ItemsFactory {
   /**
    * Only required fields filled
    *
-   * @returns {ItemsInterface}
+   * @returns {ItemInterface}
    */
-  static requiredFields (): ItemsInterface {
+  static requiredFields (): ItemInterface {
     const item = new ItemsModel();
 
     item.name = faker.commerce.productMaterial();
@@ -26,9 +26,9 @@ class ItemsFactory {
   /**
    * All fields filled
    *
-   * @returns {ItemsInterface}
+   * @returns {ItemInterface}
    */
-  static allFields (): ItemsInterface {
+  static allFields (): ItemInterface {
     const item = this.requiredFields();
 
     item.price = faker.random.number(100);

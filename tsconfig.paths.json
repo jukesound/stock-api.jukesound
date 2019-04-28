@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@root": ["/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@models/*": ["src/models/*"],
+      "@routes/*": ["src/routes/*"],
+      "@utils/*": ["src/utils/*"],
+      "@dto/*": ["src/dto/*"],
+      "@enums/*": ["src/enums/*"],
+      "@interfaces/*": ["src/interfaces/*"]
+    }
+  }
+}

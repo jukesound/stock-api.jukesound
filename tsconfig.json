@@ -7,20 +7,9 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true,
-    "baseUrl": "./",
-    "paths": {
-      "/": ["./"],
-      "src": ["./src"],
-      "controllers": ["./src/controllers"],
-      "models": ["./src/models"],
-      "routes": ["./src/routes"],
-      "utils": ["./src/utils"],
-      "dto": ["./src/dto"],
-      "enums": ["./src/enums"],
-      "interfaces": ["./src/interfaces"]
-    }
+    "sourceMap": true
   },
+  "extends": "./tsconfig.paths.json",
   "exclude": [
     "node_modules"
   ]
