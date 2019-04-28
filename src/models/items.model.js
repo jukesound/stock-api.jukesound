@@ -1,5 +1,5 @@
 import * as Joi from 'joi';
-import { Model, Sequelize } from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 
 import sequelize from 'database';
 import config from 'config';
@@ -74,41 +74,41 @@ class ItemsModel extends Model {
 
 ItemsModel.init({
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false,
   },
   name: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   slug: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     unique: true,
     allowNull: false,
   },
   quantity: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   quantity_buy: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: DataTypes.FLOAT,
   },
   url: {
-    type: Sequelize.TEXT,
+    type: DataTypes.TEXT,
   },
   image: {
-    type: Sequelize.TEXT,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   // foreign keys:
   // category_id: {
-  //   type: Sequelize.INTEGER,
+  //   type: DataTypes.INTEGER,
   //   references: {
   //     model: Category,
   //     key: 'id',
