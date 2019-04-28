@@ -4,3 +4,4 @@
 .pgdata
 /coverage/
 /docs/
+**/*.*.map

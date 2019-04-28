@@ -27,7 +27,7 @@ class Slug {
    *
    * @returns {Object} Returns same object + slug field
    */
-  static addSlug (body:ItemDto): ItemDto {
+  public static addSlug (body: ItemDto): ItemDto {
     // [Stop] return same object if can't build slug
     if (!this._canBuildSlug(body)) {
       return body;
@@ -43,23 +43,23 @@ class Slug {
   /**
    * Transform string into slug
    *
-   * @param {string} string
+   * @param {string} text
    * @returns {string}
    */
-  static slugify (string: string): string {
+  public static slugify (text: string): string {
     const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;';
     const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------';
     const p = new RegExp(a.split('').join('|'), 'g');
 
     /* eslint-disable */
-    return string.toString().toLowerCase()
-      .replace(/\s+/g, "-") // Replace spaces with -
+    return text.toString().toLowerCase()
+      .replace(/\s+/g, '-') // Replace spaces with -
       .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
-      .replace(/&/g, "-and-") // Replace & with 'and'
-      .replace(/[^\w\-]+/g, "") // Remove all non-word characters
-      .replace(/\-\-+/g, "-") // Replace multiple - with single -
-      .replace(/^-+/, "") // Trim - from start of text
-      .replace(/-+$/, ""); // Trim - from end of text
+      .replace(/&/g, '-and-') // Replace & with 'and'
+      .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+      .replace(/\-\-+/g, '-') // Replace multiple - with single -
+      .replace(/^-+/, '') // Trim - from start of text
+      .replace(/-+$/, ''); // Trim - from end of text
   }
 
   /**
@@ -71,11 +71,11 @@ class Slug {
    *
    * @private
    */
-  static _buildSlug(body: ItemDto): {slug:string} {
-    const string = body.slug || body.name;
+  public static _buildSlug (body: ItemDto): {slug: string} {
+    const name = body.slug || body.name;
 
     return {
-      "slug": this.slugify(string),
+      'slug': this.slugify(name),
     };
   }
 
@@ -88,12 +88,12 @@ class Slug {
    *
    * @private
    */
-  static _canBuildSlug(body: ItemDto): boolean {
-    if (body.name && !body.slug){
+  static _canBuildSlug (body: ItemDto): boolean {
+    if (body.name && !body.slug) {
       return true;
     }
-    if (body.slug && !body.name){
-      if (body.slug !== this.slugify(body.slug)){
+    if (body.slug && !body.name) {
+      if (body.slug !== this.slugify(body.slug)) {
         return true;
       }
     }
