@@ -1,11 +1,21 @@
 import * as Joi from 'joi';
 import { Model, DataTypes } from 'sequelize';
 
-import sequelize from 'database';
-import config from 'config';
-import Slug from 'utils/Slug/Slug';
+import CreateItemDto from '@src/items/dto/create-item.dto';
+import sequelize from '@database/index';
+import config from '@config/index';
+import Slug from '@utils/Slug/Slug';
 
 class ItemsModel extends Model {
+  public name: string;
+  public slug: string;
+  public quantity: number;
+  // tslint:disable-next-line:variable-name
+  public quantity_buy: number;
+  public image: string;
+  public price: number;
+  public url: string;
+
   static schemaDefault () {
     return Joi.object().keys({
       name: Joi.string().required(),
@@ -30,19 +40,19 @@ class ItemsModel extends Model {
     });
   }
 
-  static validators (obj, schema) {
+  static validators (obj: any, schema: any) {
     return Joi.validate(obj, schema);
   }
 
   /**
    * Add slug and validate data
    *
-   * @param {ItemDto} body
+   * @param {CreateItemDto} body
    * @param {ObserverTypeEnum} type
    *
-   * @returns {Promise<ItemDto>}
+   * @returns {Promise<CreateItemDto>}
    */
-  static async itemChanged (body, type) {
+  static async itemChanged (body: CreateItemDto, type: any) {
     // Add slug in response
     const mutableBody = Slug.addSlug(body);
 
@@ -61,7 +71,7 @@ class ItemsModel extends Model {
    *
    * @private
    */
-  static _selectSchema (type) {
+  static _selectSchema (type: any) {
     let schema = this.schemaDefault();
 
     if (type === config.ObserverTypeEnum.UPDATE_ITEM) {

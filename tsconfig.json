@@ -3,13 +3,27 @@
     "target": "es6",
     "moduleResolution": "node",
     "lib": ["dom", "es2016"],
-    "rootDir": ".",
+    "rootDir": "./",
     "noImplicitAny": true,
     "removeComments": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "preserveConstEnums": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@root/*": ["/*"],
+
+      "@database/*": ["database/*"],
+
+      "@config/*": ["config/*"],
+
+      "@src/*": ["src/*"],
+      "@routes/*": ["src/routes/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
-  "extends": "./tsconfig.paths.json",
   "exclude": [
     "node_modules"
   ]

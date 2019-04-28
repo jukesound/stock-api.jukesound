@@ -1,4 +1,4 @@
-import { ItemDto } from '@dto/index';
+import CreateItemDto from '@src/items/dto/create-item.dto';
 
 /**
  * Slug manipulation
@@ -6,7 +6,7 @@ import { ItemDto } from '@dto/index';
 class Slug {
   /**
    * Add slug field to object
-   * @param {ItemDto} body - Object with name or slug attribute
+   * @param {CreateItemDto} body - Object with name or slug attribute
    * @example
    * import Slug from "utils/Slug/Slug"
    *
@@ -27,7 +27,7 @@ class Slug {
    *
    * @returns {Object} Returns same object + slug field
    */
-  public static addSlug (body: ItemDto): ItemDto {
+  public static addSlug (body: CreateItemDto): CreateItemDto {
     // [Stop] return same object if can't build slug
     if (!this._canBuildSlug(body)) {
       return body;
@@ -65,13 +65,13 @@ class Slug {
   /**
    * Create object with slug field
    *
-   * @param {ItemDto} body
+   * @param {CreateItemDto} body
    *
    * @returns {{slug: string}}
    *
    * @private
    */
-  public static _buildSlug (body: ItemDto): {slug: string} {
+  public static _buildSlug (body: CreateItemDto): {slug: string} {
     const name = body.slug || body.name;
 
     return {
@@ -82,13 +82,13 @@ class Slug {
   /**
    * Check if can build slug with body object
    *
-   * @param {ItemDto} body
+   * @param {CreateItemDto} body
    *
    * @returns {boolean}
    *
    * @private
    */
-  static _canBuildSlug (body: ItemDto): boolean {
+  static _canBuildSlug (body: CreateItemDto): boolean {
     if (body.name && !body.slug) {
       return true;
     }

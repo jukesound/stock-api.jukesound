@@ -3,8 +3,8 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import sequelize from 'database';
-import routes from 'routes';
+import sequelize from '@database/index';
+import routes from '@routes/index';
 
 dotenvConfig();
 
@@ -15,7 +15,7 @@ const app = express();
  */
 sequelize.authenticate()
   .then(() => console.log('Database connected'))
-  .catch((err) => console.log(err.parent));
+  .catch((err: any) => console.log(err.parent));
 
 /**
  * express use

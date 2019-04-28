@@ -1,44 +1,46 @@
-import config from 'config';
+import { QueryInterface } from 'sequelize';
+
+import config from '@config/index';
 
 export default {
-  up: (queryInterface, Sequelize) => {
+  up: (queryInterface: QueryInterface, DataType: any) => {
     return queryInterface.createTable(config.table.prefix + config.table.items.name, {
       id: {
-        type: Sequelize.INTEGER,
+        type: DataType.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
       name: {
-        type: Sequelize.STRING,
+        type: DataType.STRING,
         allowNull: false,
       },
       slug: {
-        type: Sequelize.STRING,
+        type: DataType.STRING,
         unique: true,
       },
       quantity: {
-        type: Sequelize.INTEGER,
+        type: DataType.INTEGER,
         allowNull: false,
       },
       quantity_buy: {
-        type: Sequelize.INTEGER,
+        type: DataType.INTEGER,
         allowNull: false,
       },
       price: {
-        type: Sequelize.FLOAT,
+        type: DataType.FLOAT,
       },
       url: {
-        type: Sequelize.TEXT,
+        type: DataType.TEXT,
       },
       image: {
-        type: Sequelize.TEXT,
+        type: DataType.TEXT,
         allowNull: false,
       },
     });
   },
 
-  down: (queryInterface) => {
+  down: (queryInterface: QueryInterface) => {
     return queryInterface.dropTable(config.table.prefix + config.table.items.name);
   },
 };

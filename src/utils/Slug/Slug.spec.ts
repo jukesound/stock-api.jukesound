@@ -1,4 +1,4 @@
-import Slug from 'utils/Slug/Slug';
+import Slug from '@utils/Slug/Slug';
 
 describe('_canBuildSlug()', () => {
   describe('Build', () => {

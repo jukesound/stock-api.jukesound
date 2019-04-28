@@ -1,5 +1,8 @@
-import { ItemsModel } from 'models';
-import config from 'config';
+import * as express from 'express';
+
+import config from '@config/index';
+import ItemsModel from '@src/items/items.model';
+import CreateItemDto from '@src/items/dto/create-item.dto';
 
 class ItemController {
   /**
@@ -8,9 +11,9 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemDto[]>}
+   * @returns {Promise<CreateItemDto[]>}
    */
-  static async all (req, res) {
+  static async all (req: express.Request, res: express.Response): Promise<any> {
     // [Get] all items
     const body = await ItemsModel.findAll();
 
@@ -24,9 +27,9 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemDto>}
+   * @returns {Promise<CreateItemDto>}
    */
-  static async get (req, res) {
+  static async get (req: express.Request, res: express.Response): Promise<any> {
     // [Get] item
     const body = await ItemsModel.findByPk(req.params.id);
 
@@ -40,9 +43,9 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemDto>}
+   * @returns {Promise<CreateItemDto>}
    */
-  static async post (req, res) {
+  static async post (req: express.Request, res: express.Response): Promise<any> {
     // Mutate body
     const mutatedBody = await ItemsModel.itemChanged(
       req.body,
@@ -62,9 +65,9 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemDto>}
+   * @returns {Promise<CreateItemDto>}
    */
-  static async update (req, res) {
+  static async update (req: express.Request, res: express.Response): Promise<any> {
     // Mutate body
     const mutatedBody = await ItemsModel.itemChanged(
       req.body,
@@ -87,9 +90,9 @@ class ItemController {
    * @param {express.Request} req request
    * @param {express.Response} res response
    *
-   * @returns {Promise<ItemDto>}
+   * @returns {Promise<CreateItemDto>}
    */
-  static async delete (req, res) {
+  static async delete (req: express.Request, res: express.Response): Promise<any> {
     // [Get] item by id
     const item = await ItemsModel.findByPk(req.params.id);
 

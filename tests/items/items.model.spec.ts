@@ -1,10 +1,10 @@
 import { config as dotenvConfig } from 'dotenv';
-import request from 'supertest';
+import * as request from 'supertest';
 
-import config from 'config';
-import sequelize from 'database';
-import app from '/app.js';
-import ItemsFactory from 'database/factory/ItemsFactory';
+import config from '@config/index';
+import sequelize from '@database/index';
+import app from 'app';
+import ItemsFactory from '@database/factory/ItemsFactory';
 
 dotenvConfig();
 

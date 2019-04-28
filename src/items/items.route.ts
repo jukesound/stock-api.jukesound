@@ -1,7 +1,7 @@
-import express from 'express';
+import * as express from 'express';
 
-import { ItemController } from 'controllers';
-import { asyncErrorHandler } from 'routes/handler/errors';
+import ItemController from '@src/items/items.controller';
+import { asyncErrorHandler } from '@routes/handler/errors';
 
 const router = express.Router();
 

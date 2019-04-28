@@ -1,8 +1,10 @@
-import config from 'config';
+import * as express from 'express';
+import config from '@config/index';
 
-export const asyncErrorHandler = fn => (req, res, next) => {
+// @ts-ignore
+export const asyncErrorHandler = fn => (req: express.Request, res: express.Response) => {
   return Promise
-    .resolve(fn(req, res, next))
+    .resolve(fn(req, res))
     .catch(err => {
       if (process.env.NODE_ENV === 'production') {
         return res.sendStatus(config.httpCode.serverError);
@@ -15,11 +17,12 @@ export const asyncErrorHandler = fn => (req, res, next) => {
     });
 };
 
-function _buildError (err) {
+function _buildError (err: any): any {
   let errorBuilded = {
     name: err.name || null,
     status: config.httpCode.serverError,
     isJoi: false,
+
   };
 
   if (
@@ -35,12 +38,16 @@ function _buildError (err) {
 
   if (err.isJoi) {
     errorBuilded.isJoi = err.isJoi;
+    // @ts-ignore
     errorBuilded.details = err.details;
+    // @ts-ignore
     errorBuilded._object = err._object;
   }
 
   if (err.name === 'SequelizeUniqueConstraintError') {
+    // @ts-ignore
     errorBuilded.errors = err.errors;
+    // @ts-ignore
     errorBuilded.fields = err.fields;
   }
 
